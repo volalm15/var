@@ -2,6 +2,8 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/README.md" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/discovery-service/src/main/kotlin/com/volalm15/discoveryservice/DiscoveryServiceApplication.kt" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/docs" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

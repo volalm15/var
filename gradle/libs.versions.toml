@@ -3,18 +3,17 @@ kotlin-logging = "3.0.4"
 lorem = "2.1"
 j2html = "1.6.0"
 kotlin = "1.7.22"
-springBoot = "3.0.0"
+springBoot = "2.7.6"
 dokka = "1.7.20"
 detekt = "1.22.0"
-springCloudVersion = "2021.0.0"
-spring-cloud-bom= "2021.0.5"
+springCloudVersion = "2021.0.5"
 
 [libraries]
 # project dependencies
 kotlin-logging = { module = "io.github.microutils:kotlin-logging", version.ref = "kotlin-logging" }
 lorem = { module = "com.thedeanda:lorem", version.ref = "lorem" }
 j2html = { module = "com.j2html:j2html", version.ref = "j2html" }
-spring-cloud-bom = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "spring-cloud-bom" }
+spring-cloud-bom = { module = "org.springframework.cloud:spring-cloud-dependencies", version.ref = "springCloudVersion" }
 
 # buildSrc dependencies (plugins)
 kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }

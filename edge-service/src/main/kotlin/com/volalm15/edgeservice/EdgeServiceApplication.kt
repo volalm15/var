@@ -1,11 +1,11 @@
-package com.volalm15.configservice
+package com.volalm15.edgeservice
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class ConfigServiceApplication
+class EdgeServiceApplication
 
 fun main(args: Array<String>) {
-    runApplication<ConfigServiceApplication>(args = args)
+    runApplication<EdgeServiceApplication>(args = args)
 }

@@ -12,8 +12,6 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-actuator")
 
 	implementation("org.springframework.cloud:spring-cloud-starter-netflix-eureka-server")
-	implementation("org.springframework.cloud:spring-cloud-starter")
-	implementation("org.springframework.cloud:spring-cloud-starter-config")
 
 	implementation(libs.bundles.j2html)
 	implementation(libs.bundles.kotlinLogging)
