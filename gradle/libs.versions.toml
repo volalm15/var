@@ -7,7 +7,7 @@ springBoot = "2.7.6"
 dokka = "1.7.20"
 detekt = "1.21.0"
 springCloudVersion = "2021.0.0"
-spring-cloud-bom= "2021.0.0"
+spring-cloud-bom= "2021.0.5"
 
 [libraries]
 # project dependencies
