@@ -1,0 +1,55 @@
+server:
+  port: 8761
+
+
+spring:
+  main:
+    web-application-type: reactive
+  session:
+    store-type: redis
+  redis:
+    host: ${REDIS_HOSTNAME:127.0.0.1}
+    port: ${REDIS_PORT:6379}
+
+  cloud:
+    gateway:
+      default-filters:
+        - name: Retry
+          args:
+            retries: 15
+            backoff:
+              firstBackoff: 50ms
+              maxBackoff: 500ms
+        - name: TokenRelay
+
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+
+  security:
+    oauth2:
+      client:
+        provider:
+          okta:
+            issuer-uri: ${OAUTH2_ISSUER_URI}
+        registration:
+          okta:
+            provider: okta
+            clientId: ${OAUTH2_CLIENT_ID}
+            clientSecret: ${OAUTH2_CLIENT_SECRET}
+            scope:
+              - openid
+management:
+  endpoints:
+    gateway:
+      enabled: true
+    web:
+      exposure:
+        include: '*'
+
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG

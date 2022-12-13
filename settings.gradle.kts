@@ -6,6 +6,8 @@ rootProject.name = "var"
 include(":config-service")
 include(":discovery-service")
 include(":edge-service")
+include(":data-service")
+
 
 
 if (!System.getenv("CI").isNullOrEmpty() && !System.getenv("BUILD_SCAN_TOS_ACCEPTED").isNullOrEmpty()) {

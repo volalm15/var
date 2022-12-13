@@ -88,7 +88,7 @@ style:
     active: true
   ForbiddenComment:
     active: true
-    values: [ 'TODO:', 'FIXME:', 'STOPSHIP:', '@author' ]
+    values: [ 'TODO', 'FIXME', 'STOPSHIP', '@author' ]
   MaxLineLength:
     active: false
     maxLineLength: 200
