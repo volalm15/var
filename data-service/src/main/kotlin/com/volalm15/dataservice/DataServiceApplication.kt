@@ -10,13 +10,13 @@ import reactor.core.publisher.Flux
 class DataServiceApplication
 
 fun main(args: Array<String>) {
-	runApplication<DataServiceApplication>(args = args)
+    runApplication<DataServiceApplication>(args = args)
 }
 
 @RestController
 class DataServiceController {
-	@GetMapping("books")
-	fun getBooks(): Flux<String> {
-		return Flux.just("Book 1", "Book 2", "Book 3")
-	}
+    @GetMapping("books")
+    fun getBooks(): Flux<String> {
+        return Flux.just("Book 1", "Book 2", "Book 3")
+    }
 }

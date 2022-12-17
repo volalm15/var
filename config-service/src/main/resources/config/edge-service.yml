@@ -5,11 +5,6 @@ server:
 spring:
   main:
     web-application-type: reactive
-  session:
-    store-type: redis
-  redis:
-    host: ${REDIS_HOSTNAME:127.0.0.1}
-    port: ${REDIS_PORT:6379}
 
   cloud:
     gateway:
@@ -31,11 +26,11 @@ spring:
     oauth2:
       client:
         provider:
-          okta:
+          auth0:
             issuer-uri: ${OAUTH2_ISSUER_URI}
         registration:
-          okta:
-            provider: okta
+          auth0:
+            provider: auth0
             clientId: ${OAUTH2_CLIENT_ID}
             clientSecret: ${OAUTH2_CLIENT_SECRET}
             scope:
