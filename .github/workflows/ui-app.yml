@@ -1,0 +1,37 @@
+name: Build ui-app
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - "ui-app/**"
+  pull_request:
+    branches: [ main ]
+    paths:
+      - "ui-app/**"
+
+permissions:
+  packages: write
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build docker image
+        run: |
+          cd ui-app
+          docker build -t ghcr.io/volalm15/ui-app:latest -f Dockerfile .
+
+      - name: Publish docker image
+        run: |
+          docker push ghcr.io/volalm15/ui-app:latest

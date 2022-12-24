@@ -24,21 +24,13 @@ class SecurityConfig(private val clientRegistrationRepository: ReactiveClientReg
         // @formatter:off
         http.csrf()
             .disable()
-            .authorizeExchange { exchange ->
-                exchange
-                    .pathMatchers("/eureka/**")
-                    .permitAll()
-                    .anyExchange()
-                    .authenticated()
-            }
+            .authorizeExchange()
+            .pathMatchers("/actuator/**").permitAll()
+            .anyExchange().authenticated()
+            .and()
             .oauth2Login(Customizer.withDefaults())
-            .logout { logout ->
-                logout.logoutSuccessHandler(
-                    logoutSuccessHandler(
-                        clientRegistrationRepository
-                    )
-                )
-            }
+            .logout().logoutSuccessHandler(logoutSuccessHandler(clientRegistrationRepository))
+
         return http.build()
         // @formatter:on
     }

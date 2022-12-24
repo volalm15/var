@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean
 import org.springframework.core.convert.converter.Converter
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity
 import org.springframework.security.config.web.server.ServerHttpSecurity
-import org.springframework.security.config.web.server.ServerHttpSecurity.AuthorizeExchangeSpec
 import org.springframework.security.config.web.server.ServerHttpSecurity.OAuth2ResourceServerSpec
 import org.springframework.security.core.GrantedAuthority
 import org.springframework.security.core.authority.SimpleGrantedAuthority
@@ -18,16 +17,18 @@ import java.util.stream.Collectors
 class SecurityConfig {
 
     @Bean
-    fun springSecurityFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain? {
-        return http.authorizeExchange { exchanges: AuthorizeExchangeSpec ->
-            exchanges.pathMatchers("/books").hasRole("moderator").anyExchange().authenticated()
-        }.oauth2ResourceServer { oauth2: OAuth2ResourceServerSpec ->
-            oauth2.jwt { jwt: OAuth2ResourceServerSpec.JwtSpec ->
-                jwt.jwtAuthenticationConverter(
-                    keycloakAuthConverter()
-                )
+    fun springSecurityFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain {
+        return http.authorizeExchange()
+            .pathMatchers("/books").permitAll()
+            .pathMatchers("/whoami").hasRole("ROLE_VIEWER")
+            .anyExchange().authenticated()
+            .and()
+            .oauth2ResourceServer { oauth2ResourceServerSpec: OAuth2ResourceServerSpec ->
+                oauth2ResourceServerSpec.jwt { jwtSpec: ServerHttpSecurity.OAuth2ResourceServerSpec.JwtSpec ->
+                    jwtSpec.jwtAuthenticationConverter(keycloakAuthConverter())
+                }
             }
-        }.build()
+            .build()
     }
 
     /**
