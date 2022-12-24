@@ -1,6 +1,5 @@
 package com.volalm15.edgeservice.config
 
-import org.springframework.boot.actuate.autoconfigure.security.reactive.EndpointRequest
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.security.config.Customizer
@@ -10,7 +9,6 @@ import org.springframework.security.oauth2.client.oidc.web.server.logout.OidcCli
 import org.springframework.security.oauth2.client.registration.ReactiveClientRegistrationRepository
 import org.springframework.security.web.server.SecurityWebFilterChain
 import org.springframework.security.web.server.authentication.logout.ServerLogoutSuccessHandler
-import org.springframework.security.web.server.csrf.CookieServerCsrfTokenRepository
 
 /**
  * @author : Alois Vollmaier (A199165)
@@ -23,23 +21,30 @@ class SecurityConfig(private val clientRegistrationRepository: ReactiveClientReg
 
     @Bean
     fun springSecurityFilterChain(http: ServerHttpSecurity): SecurityWebFilterChain {
-        return http.csrf().disable().authorizeExchange { exchange ->
-            exchange.matchers(EndpointRequest.toAnyEndpoint()).permitAll()
-                .pathMatchers("/", "/*.css", "/*.js", "/favicon.ico").permitAll().anyExchange()
-                .authenticated()
-        }.oauth2Login(Customizer.withDefaults()).logout { logout ->
-            logout.logoutSuccessHandler(
-                logoutSuccessHandler(
-                    clientRegistrationRepository
+        // @formatter:off
+        http.csrf()
+            .disable()
+            .authorizeExchange { exchange ->
+                exchange
+                    .pathMatchers("/eureka/**")
+                    .permitAll()
+                    .anyExchange()
+                    .authenticated()
+            }
+            .oauth2Login(Customizer.withDefaults())
+            .logout { logout ->
+                logout.logoutSuccessHandler(
+                    logoutSuccessHandler(
+                        clientRegistrationRepository
+                    )
                 )
-            )
-        }.csrf { csrf -> csrf.csrfTokenRepository(CookieServerCsrfTokenRepository.withHttpOnlyFalse()) }
-            .build()
+            }
+        return http.build()
+        // @formatter:on
     }
 
     private fun logoutSuccessHandler(repository: ReactiveClientRegistrationRepository): ServerLogoutSuccessHandler {
-        val oidcLogoutSuccessHandler =
-            OidcClientInitiatedServerLogoutSuccessHandler(repository)
+        val oidcLogoutSuccessHandler = OidcClientInitiatedServerLogoutSuccessHandler(repository)
         oidcLogoutSuccessHandler.setPostLogoutRedirectUri("{baseUrl}")
         return oidcLogoutSuccessHandler
     }

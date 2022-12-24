@@ -5,7 +5,6 @@ server:
 spring:
   main:
     web-application-type: reactive
-
   cloud:
     gateway:
       default-filters:
@@ -16,7 +15,6 @@ spring:
               firstBackoff: 50ms
               maxBackoff: 500ms
         - name: TokenRelay
-
       discovery:
         locator:
           enabled: true
@@ -26,16 +24,15 @@ spring:
     oauth2:
       client:
         provider:
-          auth0:
-            issuer-uri: ${OAUTH2_ISSUER_URI}
+          keycloak:
+            issuer-uri: ${OAUTH2_ISSUER_URI:http://localhost:8180}/realms/${OAUTH2_REALM:var-realm}
         registration:
-          auth0:
-            provider: auth0
+          keycloak:
+            provider: keycloak
             clientId: ${OAUTH2_CLIENT_ID}
             clientSecret: ${OAUTH2_CLIENT_SECRET}
             scope:
               - openid
-management:
   endpoints:
     gateway:
       enabled: true

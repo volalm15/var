@@ -1,12 +1,12 @@
 server:
-  port: 8762
+  port: 0
 
 spring:
   security:
     oauth2:
       resource-server:
         jwt:
-          issuer-uri: ${OAUTH2_ISSUER_URI}
+          issuer-uri: ${OAUTH2_ISSUER_URI:http://localhost:8180}/realms/${OAUTH2_REALM:var-realm}
 
 management:
   endpoints:
