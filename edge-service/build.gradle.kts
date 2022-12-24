@@ -26,7 +26,6 @@ dependencies {
     runtimeOnly("io.zipkin.reporter2:zipkin-reporter-brave")
     implementation(libs.bundles.j2html)
     implementation(libs.bundles.kotlinLogging)
-
     developmentOnly("org.springframework.boot:spring-boot-devtools")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("io.projectreactor:reactor-test")
