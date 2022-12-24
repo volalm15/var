@@ -222,3 +222,4 @@ gradle-app.setting
 
 /.idea/aws.xml
 /dev.env
+/var-deployment/docker/prod.env
