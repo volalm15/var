@@ -3,26 +3,8 @@ version: "3.8"
 networks:
   backend:
     name: backend
+
 services:
-
-
-  discovery-service:
-    depends_on:
-      - fluent-bit
-    image: ghcr.io/volalm15/discovery-service:latest
-    container_name: "discovery-service"
-    restart: unless-stopped
-    env_file:
-      - prod.env
-    networks:
-      - backend
-    ports:
-      - "8888:8888"
-    logging:
-      driver: fluentd
-      options:
-        fluentd-address: 127.0.0.1:24224
-
   data-service:
     depends_on:
       - fluent-bit
@@ -34,7 +16,7 @@ services:
     networks:
       - backend
     ports:
-      - "8000-8020:8762"
+      - "8000:8000"
     logging:
       driver: fluentd
       options:
@@ -53,7 +35,7 @@ services:
     networks:
       - backend
     ports:
-      - "8761:8761"
+      - "9000:9000"
     logging:
       driver: fluentd
       options:
@@ -70,7 +52,24 @@ services:
     networks:
       - backend
     ports:
-      - "8760:8760"
+      - "9001:9001"
+    logging:
+      driver: fluentd
+      options:
+        fluentd-address: 127.0.0.1:24224
+
+  discovery-service:
+    depends_on:
+      - fluent-bit
+    image: ghcr.io/volalm15/discovery-service:latest
+    container_name: "discovery-service"
+    restart: unless-stopped
+    env_file:
+      - prod.env
+    networks:
+      - backend
+    ports:
+      - "9002:9002"
     logging:
       driver: fluentd
       options:

@@ -24,5 +24,14 @@ After cloning the repository, you can run the application using the following co
 
 Don't forget to set the environment variables in the `prod.env` file. You can find the list of required
 variables in the `prod.env.example` example file.
+
+Port List:
+
+- 9000: Edge Service
+- 9001: Config Service
+- 9002: Discovery Service
+- 8000: Data Service
+
 ### Service Overview
+
 ![](docs/concept.drawio.png)
