@@ -3,7 +3,6 @@ version: "3.8"
 networks:
   backend:
     name: backend
-
 services:
   data-service:
     depends_on:
@@ -79,6 +78,8 @@ services:
   keycloak:
     image: quay.io/keycloak/keycloak
     container_name: keycloak
+    networks:
+      - backend
     command:
       - start-dev --import-realm
     volumes:
@@ -92,6 +93,8 @@ services:
   redis:
     image: redis
     container_name: redis
+    networks:
+      - backend
     ports:
       - "6379:6379"
 
@@ -100,6 +103,8 @@ services:
   grafana:
     image: grafana/grafana
     container_name: grafana
+    networks:
+      - backend
     depends_on:
       - loki
       - prometheus
@@ -117,6 +122,8 @@ services:
   loki:
     image: grafana/loki
     container_name: loki
+    networks:
+      - backend
     depends_on:
       - fluent-bit
     ports:
@@ -125,6 +132,8 @@ services:
   fluent-bit:
     image: grafana/fluent-bit-plugin-loki
     container_name: fluent-bit
+    networks:
+      - backend
     ports:
       - "24224:24224"
     environment:
@@ -135,6 +144,8 @@ services:
   prometheus:
     image: prom/prometheus
     container_name: prometheus
+    networks:
+      - backend
     ports:
       - "9090:9090"
     volumes:
@@ -143,6 +154,8 @@ services:
   tempo:
     image: grafana/tempo
     container_name: tempo
+    networks:
+      - backend
     command: -config.file /etc/tempo-config.yml
     ports:
       - "3110:3100"     # Tempo
