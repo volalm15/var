@@ -1,12 +1,25 @@
+// Settings:
+:status:
+// URIs:
+:uri-build-status-data-service: https://github.com/volalm15/app/actions/workflows/data-service.yml
+:img-build-status-data-service: https://github.com/volalm15/var/actions/workflows/data-service.yml/badge.svg?branch=main
+:img-build-status-config-service: https://github.com/volalm15/var/actions/workflows/config-service.yml/badge.svg?branch=main
+:uri-build-status-config-service: https://github.com/volalm15/app/actions/workflows/config-service.yml
+:img-build-status-discovery-service: https://github.com/volalm15/var/actions/workflows/discovery-service.yml/badge.svg?branch=main
+:uri-build-status-discovery-service: https://github.com/volalm15/app/actions/workflows/discovery-service.yml
+:img-build-status-edge-service: https://github.com/volalm15/var/actions/workflows/edge-service.yml/badge.svg?branch=main
+:uri-build-status-edge-service: https://github.com/volalm15/app/actions/workflows/edge-service.yml
+
 = Spring Cloud Playground
 
 == Service Build Status
 
-[![Build data-service](https://github.com/volalm15/var/actions/workflows/data-service.yml/badge.svg?branch=main)](https://github.com/volalm15/app/actions/workflows/data-service.yml)
-[![Build config-service](https://github.com/volalm15/var/actions/workflows/config-service.yml/badge.svg)](https://github.com/volalm15/app/actions/workflows/config-service.yml)
-[![Build discovery-service](https://github.com/volalm15/var/actions/workflows/discovery-service.yml/badge.svg?branch=main)](https://github.com/volalm15/app/actions/workflows/discovery-service.yml)
-[![Build edge-service](https://github.com/volalm15/var/actions/workflows/edge-service.yml/badge.svg?branch=main)](https://github.com/volalm15/app/actions/workflows/edge-service.yml)
-[![Build ui-app](https://github.com/volalm15/var/actions/workflows/ui-app.yml/badge.svg)](https://github.com/volalm15/app/actions/workflows/ui-app.yml)
+ifdef::status[]
+image:{img-build-status-data-service}[Build Status Badge,link={img-build-status-data-service}]
+image:{img-build-status-config-service}[Build Status Badge,link={img-build-status-config-service}]
+image:{img-build-status-discovery-service}[Build Status Badge,link={img-build-status-discovery-service}]
+image:{img-build-status-edge-service}[Build Status Badge,link={img-build-status-edge-service}]
+endif::[]
 
 === Hello world?
 
@@ -32,6 +45,15 @@ Port List:
 - 9002: Discovery Service
 - 8000: Data Service
 
+[source,mermaid]
+....
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->>Bob: Hello Bob, how are you?
+    Bob-->>Alice: Great!
+....
+
 == Service Overview
 
-![](docs/concept.drawio.png)
+image::{docfile}/../docs/concept.drawio.png[Service Overview]
