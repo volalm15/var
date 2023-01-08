@@ -1,0 +1,128 @@
+{
+  "info": {
+    "_postman_id": "729bb73f-36a9-4b02-a80e-89f5010b845c",
+    "name": "var-app",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17725359"
+  },
+  "item": [
+    {
+      "name": "data-service | books",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{gateway_base_url}}/data-service/books",
+          "protocol": "http",
+          "host": [
+            "{{gateway_base_url}}"
+          ],
+          "path": [
+            "data-service",
+            "books"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "data-service | whoami",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://{{gateway_base_url}}/data-service/whoami",
+          "protocol": "http",
+          "host": [
+            "{{gateway_base_url}}"
+          ],
+          "path": [
+            "data-service",
+            "whoami"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "tokenName",
+        "value": "Gateway Token",
+        "type": "string"
+      },
+      {
+        "key": "challengeAlgorithm",
+        "value": "S256",
+        "type": "string"
+      },
+      {
+        "key": "scope",
+        "value": "openid",
+        "type": "string"
+      },
+      {
+        "key": "redirect_uri",
+        "value": "localhost:7200/dashboard",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      },
+      {
+        "key": "clientSecret",
+        "value": "{{keycloak_client_secret}}",
+        "type": "string"
+      },
+      {
+        "key": "clientId",
+        "value": "{{keycloak_client_id}}",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "http://{{keycloak_base_url}}/realms/{{keycloak_realm_name}}/protocol/openid-connect/auth",
+        "type": "string"
+      },
+      {
+        "key": "addTokenTo",
+        "value": "header",
+        "type": "string"
+      },
+      {
+        "key": "client_authentication",
+        "value": "body",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "http://{{keycloak_base_url}}/realms/{{keycloak_realm_name}}/protocol/openid-connect/token",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}

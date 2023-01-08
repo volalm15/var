@@ -1,9 +1,13 @@
 name: Build discovery-service
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - feature/*
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
+      - feature/*
 
 permissions:
   packages: write
