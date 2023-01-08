@@ -2,12 +2,8 @@ name: Build config-service
 on:
   push:
     branches: [ main ]
-    paths:
-      - "config-service/**"
   pull_request:
     branches: [ main ]
-    paths:
-      - "config-service/**"
 
 permissions:
   packages: write

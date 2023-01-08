@@ -2,12 +2,8 @@ name: Build discovery-service
 on:
   push:
     branches: [ main ]
-    paths:
-      - "discovery-service/**"
   pull_request:
     branches: [ main ]
-    paths:
-      - "discovery-service/**"
 
 permissions:
   packages: write

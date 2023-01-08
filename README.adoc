@@ -45,15 +45,6 @@ Port List:
 - 9002: Discovery Service
 - 8000: Data Service
 
-[source,mermaid]
-....
-sequenceDiagram
-    participant Alice
-    participant Bob
-    Alice->>Bob: Hello Bob, how are you?
-    Bob-->>Alice: Great!
-....
-
 == Service Overview
 
 image::{docfile}/../docs/concept.drawio.png[Service Overview]

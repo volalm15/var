@@ -2,12 +2,8 @@ name: Build edge-service
 on:
   push:
     branches: [ main ]
-    paths:
-      - "edge-service/**"
   pull_request:
     branches: [ main ]
-    paths:
-      - "edge-service/**"
 
 permissions:
   packages: write

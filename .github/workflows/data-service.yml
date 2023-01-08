@@ -2,12 +2,8 @@ name: Build data-service
 on:
   push:
     branches: [ main ]
-    paths:
-      - "data-service/**"
   pull_request:
     branches: [ main ]
-    paths:
-      - "data-service/**"
 
 permissions:
   packages: write
