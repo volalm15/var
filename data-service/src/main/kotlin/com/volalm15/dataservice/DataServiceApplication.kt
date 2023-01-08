@@ -1,6 +1,5 @@
 package com.volalm15.dataservice
 
-import jakarta.annotation.security.RolesAllowed
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -31,7 +30,6 @@ class DataServiceController {
         )
     }
 
-    @RolesAllowed("ROLE_VIEWER")
     @GetMapping("whoami")
     @ResponseBody
     fun getUserInfo(@AuthenticationPrincipal user: Jwt): MutableMap<String, Any> {

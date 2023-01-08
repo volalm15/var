@@ -1,13 +1,6 @@
 server:
   port: 8000
 
-spring:
-  security:
-    oauth2:
-      resource-server:
-        jwt:
-          issuer-uri: ${OAUTH2_ISSUER_URI:http://localhost:8180}/realms/${OAUTH2_REALM:var-realm}
-
 logging:
   pattern:
     level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
@@ -15,6 +8,12 @@ logging:
 info:
   system: Polar Bookshop
 
+spring:
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: ${OAUTH2_ISSUER_URI:http://localhost:8180}/realms/${OAUTH2_REALM:var-realm}
 management:
   endpoints:
     web:

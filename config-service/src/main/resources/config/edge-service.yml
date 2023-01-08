@@ -14,7 +14,6 @@ spring:
             backoff:
               firstBackoff: 50ms
               maxBackoff: 500ms
-        - name: TokenRelay
       discovery:
         locator:
           enabled: true
@@ -22,17 +21,10 @@ spring:
 
   security:
     oauth2:
-      client:
-        provider:
-          keycloak:
-            issuer-uri: ${OAUTH2_ISSUER_URI:http://localhost:8180}/realms/${OAUTH2_REALM:var-realm}
-        registration:
-          keycloak:
-            provider: keycloak
-            clientId: ${OAUTH2_CLIENT_ID}
-            clientSecret: ${OAUTH2_CLIENT_SECRET}
-            scope:
-              - openid
+      resource-server:
+        jwt:
+          issuer-uri: ${OAUTH2_ISSUER_URI:http://localhost:8180}/realms/${OAUTH2_REALM:var-realm}
+
   endpoints:
     gateway:
       enabled: true
